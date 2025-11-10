@@ -1,0 +1,660 @@
+---
+title: "Stripe Integration"
+description: "Add payment processing capabilities to your Superun app using Stripe"
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+## Overview
+
+Stripe is a payment processing platform that allows you to accept payments online. With Superun's Stripe integration, you can easily add payment functionality to your applications, including one-time payments, subscriptions, and marketplace features.
+
+## What is Stripe
+
+Stripe provides a comprehensive suite of payment APIs and tools:
+
+- **Payment Processing:** Accept credit cards, digital wallets, and local payment methods
+- **Subscriptions:** Recurring billing and subscription management
+- **Marketplace:** Multi-party payments and marketplace functionality
+- **Connect:** Platform payments for marketplaces and platforms
+- **Billing:** Invoicing and billing management
+- **Tax:** Automatic tax calculation and compliance
+
+## Key Benefits
+
+- **Global Reach:** Accept payments from customers worldwide
+- **Multiple Payment Methods:** Credit cards, digital wallets, bank transfers, and more
+- **Developer-Friendly:** Well-documented APIs and excellent developer experience
+- **Compliance:** PCI DSS compliant, handles sensitive payment data securely
+- **Real-time:** Instant payment processing and webhook notifications
+
+## Getting Started
+
+### 1. Create a Stripe Account
+
+1. Go to [stripe.com](https://stripe.com) and sign up
+2. Complete the account setup process
+3. Verify your business information
+4. Activate your account (test mode is available immediately)
+
+### 2. Get Your API Keys
+
+In your Stripe dashboard:
+
+1. Go to **Developers → API Keys**
+2. Copy your **Publishable Key** (starts with `pk_test_` or `pk_live_`)
+3. Copy your **Secret Key** (starts with `sk_test_` or `sk_live_`)
+4. Keep your secret key secure and never expose it in client-side code
+
+### 3. Configure Stripe in Superun
+
+In your Superun project:
+
+1. Go to **Settings → Integrations**
+2. Find **Stripe** and click **Connect**
+3. Enter your Publishable Key and Secret Key
+4. Choose your environment (Test or Live)
+5. Click **Save**
+
+Superun will automatically configure your project to use Stripe.
+
+## Basic Payment Setup
+
+### Install Stripe SDK
+
+Superun automatically includes the Stripe SDK, but you can also install it manually:
+
+```bash
+npm install @stripe/stripe-js
+```
+
+### Initialize Stripe
+
+```jsx
+import { loadStripe } from '@stripe/stripe-js';
+
+// Initialize Stripe
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+```
+
+## One-Time Payments
+
+### Creating a Payment Intent
+
+```jsx
+// Server-side: Create payment intent
+const createPaymentIntent = async (amount, currency = 'usd') => {
+  const response = await fetch('/api/create-payment-intent', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      amount: amount * 100, // Amount in cents
+      currency,
+    }),
+  });
+
+  const { clientSecret } = await response.json();
+  return clientSecret;
+};
+```
+
+### Processing Payment
+
+```jsx
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+
+const CheckoutForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setLoading(true);
+
+    // Create payment intent
+    const clientSecret = await createPaymentIntent(50); // $50.00
+
+    // Confirm payment
+    const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+
+    if (error) {
+      console.error('Payment failed:', error);
+    } else if (paymentIntent.status === 'succeeded') {
+      console.log('Payment succeeded:', paymentIntent);
+      // Handle successful payment
+    }
+
+    setLoading(false);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#424770',
+              '::placeholder': {
+                color: '#aab7c4',
+              },
+            },
+          },
+        }}
+      />
+      <button disabled={!stripe || loading}>
+        {loading ? 'Processing...' : 'Pay $50.00'}
+      </button>
+    </form>
+  );
+};
+
+// Wrap your app with Elements
+const App = () => {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
+  );
+};
+```
+
+## Subscriptions
+
+### Creating a Subscription
+
+```jsx
+// Create a subscription
+const createSubscription = async (priceId, customerId) => {
+  const response = await fetch('/api/create-subscription', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      priceId,
+      customerId,
+    }),
+  });
+
+  const { subscription } = await response.json();
+  return subscription;
+};
+```
+
+### Subscription Management
+
+```jsx
+// Cancel a subscription
+const cancelSubscription = async (subscriptionId) => {
+  const response = await fetch('/api/cancel-subscription', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      subscriptionId,
+    }),
+  });
+
+  const { subscription } = await response.json();
+  return subscription;
+};
+
+// Update subscription
+const updateSubscription = async (subscriptionId, newPriceId) => {
+  const response = await fetch('/api/update-subscription', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      subscriptionId,
+      newPriceId,
+    }),
+  });
+
+  const { subscription } = await response.json();
+  return subscription;
+};
+```
+
+## Customer Management
+
+### Creating Customers
+
+```jsx
+// Create a customer
+const createCustomer = async (email, name) => {
+  const response = await fetch('/api/create-customer', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      name,
+    }),
+  });
+
+  const { customer } = await response.json();
+  return customer;
+};
+```
+
+### Customer Portal
+
+```jsx
+// Create customer portal session
+const createPortalSession = async (customerId) => {
+  const response = await fetch('/api/create-portal-session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      customerId,
+    }),
+  });
+
+  const { url } = await response.json();
+  return url;
+};
+
+// Redirect to customer portal
+const handleManageSubscription = async () => {
+  const url = await createPortalSession(customerId);
+  window.location.href = url;
+};
+```
+
+## Webhooks
+
+### Setting Up Webhooks
+
+1. Go to **Developers → Webhooks** in your Stripe dashboard
+2. Click **Add endpoint**
+3. Enter your webhook URL (e.g., `https://yourapp.com/api/webhooks/stripe`)
+4. Select the events you want to listen for
+5. Copy the webhook signing secret
+
+### Processing Webhooks
+
+```jsx
+// webhook handler
+import Stripe from 'stripe';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).end();
+  }
+
+  const sig = req.headers['stripe-signature'];
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+  } catch (err) {
+    console.error('Webhook signature verification failed:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      console.log('Payment succeeded:', paymentIntent.id);
+      // Update your database, send confirmation email, etc.
+      break;
+
+    case 'customer.subscription.created':
+      const subscription = event.data.object;
+      console.log('Subscription created:', subscription.id);
+      // Activate user's premium features
+      break;
+
+    case 'customer.subscription.updated':
+      const updatedSubscription = event.data.object;
+      console.log('Subscription updated:', updatedSubscription.id);
+      // Update subscription status
+      break;
+
+    case 'customer.subscription.deleted':
+      const deletedSubscription = event.data.object;
+      console.log('Subscription cancelled:', deletedSubscription.id);
+      // Deactivate user's premium features
+      break;
+
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  res.json({ received: true });
+}
+```
+
+## Advanced Features
+
+### Payment Methods
+
+```jsx
+// Save payment method for future use
+const savePaymentMethod = async (customerId, paymentMethodId) => {
+  const response = await fetch('/api/save-payment-method', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      customerId,
+      paymentMethodId,
+    }),
+  });
+
+  const { paymentMethod } = await response.json();
+  return paymentMethod;
+};
+
+// List customer's payment methods
+const getPaymentMethods = async (customerId) => {
+  const response = await fetch(`/api/payment-methods/${customerId}`);
+  const { paymentMethods } = await response.json();
+  return paymentMethods;
+};
+```
+
+### Invoicing
+
+```jsx
+// Create an invoice
+const createInvoice = async (customerId, items) => {
+  const response = await fetch('/api/create-invoice', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      customerId,
+      items,
+    }),
+  });
+
+  const { invoice } = await response.json();
+  return invoice;
+};
+
+// Send invoice to customer
+const sendInvoice = async (invoiceId) => {
+  const response = await fetch('/api/send-invoice', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      invoiceId,
+    }),
+  });
+
+  const { invoice } = await response.json();
+  return invoice;
+};
+```
+
+### Marketplace Payments
+
+```jsx
+// Create a connected account
+const createConnectedAccount = async (email, country) => {
+  const response = await fetch('/api/create-connected-account', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      country,
+    }),
+  });
+
+  const { account } = await response.json();
+  return account;
+};
+
+// Create account link for onboarding
+const createAccountLink = async (accountId) => {
+  const response = await fetch('/api/create-account-link', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      accountId,
+    }),
+  });
+
+  const { url } = await response.json();
+  return url;
+};
+```
+
+## Testing
+
+### Test Cards
+
+Use these test card numbers for testing:
+
+- **Successful payment:** `4242 4242 4242 4242`
+- **Declined payment:** `4000 0000 0000 0002`
+- **Requires authentication:** `4000 0025 0000 3155`
+- **Insufficient funds:** `4000 0000 0000 9995`
+
+### Test Scenarios
+
+```jsx
+// Test different payment scenarios
+const testCards = {
+  success: '4242424242424242',
+  declined: '4000000000000002',
+  requiresAuth: '4000002500003155',
+  insufficientFunds: '4000000000009995',
+};
+
+// Test webhook events
+const testWebhook = async () => {
+  const response = await fetch('/api/test-webhook', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      eventType: 'payment_intent.succeeded',
+      data: { /* test data */ },
+    }),
+  });
+
+  const result = await response.json();
+  return result;
+};
+```
+
+## Security Best Practices
+
+### Environment Variables
+
+```bash
+# .env.local
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+```
+
+### Server-Side Validation
+
+```jsx
+// Always validate on the server
+const validatePayment = async (paymentIntentId) => {
+  const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+  
+  if (paymentIntent.status !== 'succeeded') {
+    throw new Error('Payment not completed');
+  }
+  
+  return paymentIntent;
+};
+```
+
+### Webhook Security
+
+```jsx
+// Verify webhook signatures
+const verifyWebhook = (payload, signature, secret) => {
+  try {
+    const event = stripe.webhooks.constructEvent(payload, signature, secret);
+    return event;
+  } catch (err) {
+    throw new Error('Invalid webhook signature');
+  }
+};
+```
+
+## Common Patterns
+
+### Payment Form Component
+
+```jsx
+const PaymentForm = ({ amount, onSuccess, onError }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { error, paymentIntent } = await stripe.confirmCardPayment(
+        clientSecret,
+        {
+          payment_method: {
+            card: elements.getElement(CardElement),
+          },
+        }
+      );
+
+      if (error) {
+        onError(error);
+      } else if (paymentIntent.status === 'succeeded') {
+        onSuccess(paymentIntent);
+      }
+    } catch (err) {
+      onError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement />
+      <button disabled={!stripe || loading}>
+        {loading ? 'Processing...' : `Pay $${amount}`}
+      </button>
+    </form>
+  );
+};
+```
+
+### Subscription Status Component
+
+```jsx
+const SubscriptionStatus = ({ customerId }) => {
+  const [subscription, setSubscription] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSubscription = async () => {
+      try {
+        const response = await fetch(`/api/subscription/${customerId}`);
+        const data = await response.json();
+        setSubscription(data.subscription);
+      } catch (error) {
+        console.error('Error fetching subscription:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSubscription();
+  }, [customerId]);
+
+  if (loading) return <div>Loading...</div>;
+
+  if (!subscription) return <div>No active subscription</div>;
+
+  return (
+    <div>
+      <h3>Subscription Status: {subscription.status}</h3>
+      <p>Current Period: {subscription.current_period_start} - {subscription.current_period_end}</p>
+      <p>Amount: ${subscription.items.data[0].price.unit_amount / 100}</p>
+    </div>
+  );
+};
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Q: Payment is failing with "Your card was declined"**
+
+A: This could be due to:
+- Insufficient funds
+- Card not supported for online payments
+- Incorrect card details
+- Bank blocking the transaction
+
+**Q: Webhooks are not being received**
+
+A: Check:
+- Webhook URL is accessible from the internet
+- Webhook endpoint is returning 200 status
+- Webhook signing secret is correct
+- Events are properly selected in Stripe dashboard
+
+**Q: Test payments are not working**
+
+A: Ensure:
+- You're using test API keys
+- Test card numbers are correct
+- Amount is in cents (e.g., $10.00 = 1000 cents)
+
+**Q: Subscription webhooks are not firing**
+
+A: Verify:
+- Subscription is created successfully
+- Webhook events are selected for subscription events
+- Webhook endpoint is handling the events properly
+
+<Card title="Need Help?" icon="help-circle" href="/superun/introduction/faq">
+  Check our FAQ for common Stripe integration questions and troubleshooting tips.
+</Card>

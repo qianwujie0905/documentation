@@ -1,0 +1,176 @@
+---
+title: "Superun Cloud"
+description: "Build complex applications seamlessly"
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+Superun Cloud is a full-stack cloud platform that takes care of every part of your application — from the frontend your users see, to the backend that powers it behind the scenes. All you do is describe what you want directly in Superun, and Superun automatically generates both the frontend and backend, ready to run in the Cloud. Instead of managing hardware or complex infrastructure, you get on-demand access to hosting, compute, and storage that scale automatically as your app grows. Superun Cloud utilizes Supabase's open-source foundation, which means you get a production-ready environment from day one, without needing to set up Supabase separately. You have the power of a production-ready database, real-time updates, user auth, and storage — with none of the manual setup steps.
+
+## Why choose Superun Cloud
+
+* **Scales as you grow**: From your first prototype to millions of users, Superun scales seamlessly with your needs.
+* **Secure by default**: Enterprise-grade authentication, fine-grained access controls, and compliance best practices protect your app and data.
+
+## Enabling Superun Cloud
+
+By default, Superun Cloud is enabled for your workspace. You can manage Superun Cloud behavior for your projects in your user preferences: **build → services → superun cloud.**
+
+### User preferences
+
+The default setting for Cloud integration is **Ask each time**, meaning you decide whether to enable or disable Cloud for each project. You can change your preference anytime from **build → services → superun cloud.** Superun prompts you when a feature requires backend functionality (for example, authentication or file storage). You have three options:
+* **Allow**: enable the integration for the current project.
+* **Deny**: decline the integration for this request (you may be asked again later).
+* **Adjust preferences**: change the default behavior for future projects (does not affect the current project).
+
+### Configuring Superun Cloud tools
+
+Each Cloud tool in your user preferences has three options:
+* **Always allow**: Superun automatically performs the action, without asking for review or approval.
+* **Ask each time**: Superun asks for your approval whenever the action is needed.
+* **Never allow**: Superun blocks the action, informs you that Cloud access is required, and instructs you to enable Cloud.
+
+You can change your Cloud tools preferences anytime from **build → services → superun cloud.**
+
+#### Tool settings and defaults
+
+| Setting             | Description                                                                                                        | Default behavior |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| Cloud               | Create and connect a Cloud project to add backend features (database, auth, storage). Required to use Cloud tools. | Ask each time    |
+| Read database       | Allow Superun to read your database.                                                                               | Always allow     |
+| Read analytics      | Query logs to investigate issues and behavior.                                                                     | Always allow     |
+| Run security checks | Run automated security checks on your database. Not a full audit.                                                  | Always allow     |
+| Modify database     | Make schema and policy changes via SQL migrations. Updates generated types.                                        | Always allow     |
+| Add data            | Add data to your database tables.                                                                                  | Always allow     |
+| Read project info   | Read project configuration and environment details.                                                                | Always allow     |
+| Configure auth      | Allow Superun to configure authentication settings (for exmple, signup policies).                                  | Always allow     |
+| Read backend logs   | Read logs from backend services.                                                                                   | Always allow     |
+
+## Superun Cloud features
+
+You'll find the **Cloud tab** inside any Superun project by clicking the `+` button next to **Preview** **mode**. Superun Cloud icon The following features and settings live inside the Cloud tab:
+
+### Database
+
+* **Generate schemas automatically**: describe the data you need in plain language, and Superun creates the tables and schema for you.
+* **Manage without SQL**: view, edit, and organize records directly in the UI. Update values, inspect tables, and keep your app's data in sync without writing queries.
+
+### Users & Auth
+
+* **User management**: view user accounts, track activity, and manage access control.
+* **Built-in authentication**: Superun can generate signup/login pages for your app. Supports email, phone, and Google sign-in.
+* **Secure by default**: authentication is backed by Superun Cloud, keeping user credentials safe.
+
+### Storage
+
+* **File handling without code**: upload, manage, and serve files such as profile photos, documents, videos, or static assets.
+* **Storage buckets**: files are stored securely in a project bucket, with URLs or references you can use in your app.
+* **Limits**: Supports files up to 2 GB.
+
+### Edge Functions
+
+* **Serverless logic**: run custom code for APIs, workflows, or advanced features, without provisioning servers. Functions scale automatically with traffic.
+
+**Common use cases:**
+* AI-powered features, such as AI summaries or AI chatbots. Use built-in Superun AI.
+* Sending emails or push notifications
+* Payment processing, for example with Stripe
+* Scheduled tasks
+* Heavy computations or external API calls
+
+**Other highlights:**
+* **Easy to create**: just describe the function you need in Superun chat.
+* **Debugging built-in**: each function includes logs of executions, output, and errors. If something fails, Superun surfaces the error for quick troubleshooting.
+
+### AI
+
+* **Built in AI functionality**: Superun Cloud comes with built in AI so you can quickly create features that make your app smarter and more engaging. For more information, see Superun AI.
+* Some examples of AI powered features include:
+   * **AI summaries** – automatically condense long text into clear takeaways
+   * **AI chatbot or agent** – build conversational helpers into your app
+   * **Sentiment detection** – understand user feedback at scale
+* You can monitor Superun AI usage and performance for your project from the AI overview.
+
+### Secrets
+
+* **Secure environment variables**: store sensitive data such as API keys, tokens, or credentials without exposing them in code.
+* **Automatic detection**: when a feature needs a secret, Superun prompts you to input it through a secure UI.
+* **Encrypted and safe**: secrets are stored securely and automatically injected into Edge Functions or other integrations.
+
+**Example:** Store your Stripe Secret Key once, and Superun ensures it's included in payment-processing functions without you hard-coding it.
+
+Some secrets, such as the Supabase keys and Superun API key, are added automatically and are required for the functioning of the Superun platform. These keys cannot be deleted.
+
+### Logs
+
+* **Real-time monitoring**: watch app activity as it happens.
+* **Debug and trace issues**: identify errors, track events, and ensure your backend is healthy.
+
+
+## Example flow - Prompting Superun to build a CRM tool
+
+Here's a step-by-step example of how you might use Superun Cloud to build a CRM tool:
+
+### Step 1: Organize the data (Database)
+
+Start by describing the data you need:
+
+```
+I want to build a CRM tool. I need to store:
+- Companies (name, industry, website, address)
+- Contacts (name, email, phone, company they work for)
+- Deals (title, value, stage, contact, company)
+- Notes (content, related to deals or contacts)
+```
+
+Superun automatically creates the database schema and tables for you.
+
+### Step 2: Make it secure (Users & Auth)
+
+Ask Superun to add authentication:
+
+```
+Add user authentication. Only authenticated users should be able to access the CRM.
+```
+
+Superun configures authentication and generates signup/login pages for your app.
+
+### Step 3: Handle files (Storage)
+
+Request file upload functionality:
+
+```
+Add the ability to upload profile photos for contacts and company logos.
+```
+
+Superun sets up storage buckets and file upload components.
+
+### Step 4: Automate workflows (Edge Functions)
+
+Add custom backend logic:
+
+```
+Create an Edge Function that sends an email notification whenever a deal stage changes to "Won".
+```
+
+Superun creates the Edge Function and connects it to your database triggers.
+
+### Step 5: Connect to other tools (Secrets)
+
+Integrate external services:
+
+```
+Add Stripe integration for payment processing. Store the API key securely.
+```
+
+Superun prompts you to add your Stripe secret key, which is stored securely and made available to your Edge Functions.
+
+### Step 6: Add AI superpowers (AI)
+
+Enhance your app with AI:
+
+```
+Add AI-powered summaries for deal notes. When a user writes a note, automatically generate a summary.
+```
+
+Superun integrates AI functionality to automatically generate summaries using the built-in AI.
+

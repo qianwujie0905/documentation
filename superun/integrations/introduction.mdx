@@ -1,0 +1,198 @@
+---
+title: "Introduction"
+description: "Extend your Superun app's functionality with integrations and external APIs"
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+
+Superun has native seamless integrations to export code and to add a backend. But it is also possible to integrate an external API if you are looking to add that specific functionality to your app.
+
+## What is an API?
+
+An API is a way for software applications to communicate and share data with each other. Different APIs offer different functionality such as sending emails or processing payments. You can read more about the power of APIs in this article on our blog.
+
+## Native Integrations
+
+Explore the sections below to get started quickly and learn more about our native integrations.
+
+
+<Card title="Supabase Integration" icon="database" href="/superun/integrations/supabase">
+  Add a backend to your app using Supabase, to support authentication and persistent data storage.
+</Card>
+
+<Card title="Stripe Integration" icon="credit-card" href="/superun/integrations/stripe">
+  Add payment processing capabilities to your app using Stripe's comprehensive payment platform.
+</Card>
+
+<Card title="Resend Integration" icon="mail" href="/superun/integrations/resend">
+  Add email capabilities to your app using Resend's modern email API.
+</Card>
+
+<Card title="AI Integration" icon="brain" href="/superun/integrations/ai">
+  Add AI capabilities to your app using various AI providers and models.
+</Card>
+
+## Verified Integrations
+
+Verified integrations work best with Superun:
+
+<AccordionGroup>
+  <Accordion title="Payment Processing">
+    <ul>
+      <li><strong>Stripe</strong> - Add payment processing capabilities to your app</li>
+      <li><strong>PayPal</strong> - Integrate PayPal checkout solutions in your applications</li>
+      <li><strong>Square</strong> - Accept payments, manage sales, and handle various aspects of commerce</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="AI & Machine Learning">
+    <ul>
+      <li><strong>OpenAI</strong> - Add AI capabilities to your app using OpenAI's models</li>
+      <li><strong>Anthropic</strong> - Add AI capabilities to your app using Anthropic's Claude models</li>
+      <li><strong>Replicate</strong> - Run and fine-tune open-source AI models</li>
+      <li><strong>Stability AI</strong> - Develops open AI models across various modalities</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Communication & Email">
+    <ul>
+      <li><strong>Resend</strong> - Add email capabilities to your app using Resend's modern email API</li>
+      <li><strong>Twilio</strong> - Add SMS capabilities to your app using Twilio</li>
+      <li><strong>SendGrid</strong> - Email delivery service for transactional and marketing emails</li>
+      <li><strong>Mailgun</strong> - Send, receive, and track emails</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="User Management & Authentication">
+    <ul>
+      <li><strong>Clerk</strong> - Comprehensive User Management Platform</li>
+      <li><strong>Auth0</strong> - Identity and access management platform</li>
+      <li><strong>Firebase Auth</strong> - Google's authentication service</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Data & Analytics">
+    <ul>
+      <li><strong>PostHog</strong> - Product analytics to provide user behavior, session replays & A/B testing</li>
+      <li><strong>Google Analytics</strong> - Web analytics service</li>
+      <li><strong>Mixpanel</strong> - Product analytics for mobile, web, and beyond</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Design & Development Tools">
+    <ul>
+      <li><strong>Three.js</strong> - Add interactive 3D graphics to your app</li>
+      <li><strong>D3.js</strong> - Create dynamic, interactive data visualizations</li>
+      <li><strong>Highcharts</strong> - Create professional, interactive charts and visualizations</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Automation & Workflows">
+    <ul>
+      <li><strong>Make</strong> - Visual platform for building workflows that automate tasks and connect apps</li>
+      <li><strong>Zapier</strong> - Automation tool that connects different web applications</li>
+      <li><strong>n8n</strong> - Build workflows with visual platform for your application</li>
+    </ul>
+  </Accordion>
+</AccordionGroup>
+
+You can always request new integrations here.
+
+## Using Any API with Superun
+
+All other callable APIs can still be integrated, but they often require additional context and instructions. You might have:
+
+* **Internal systems with custom APIs**  
+These could be services your team has built (e.g. inventory systems, analytics pipelines, internal tools) that expose REST or GraphQL endpoints but aren't publicly documented or widely known. You want Superun to pull from or send data to these systems to automate workflows or power user interfaces.
+
+* **Third-party APIs Superun doesn't yet support**  
+Maybe you use a niche SaaS product, a specialized data provider, or a partner integration that Superun doesn't have built-in knowledge of. Even though it's not officially supported, you still want Superun to connect, make calls, and work with the data.
+
+In both cases, the challenge is the same: Superun doesn't "know" the API by default. But with good documentation and authentication setup, it can still use it effectively. Either way, the approach is the same: **Superun can still connect to it**. Here's how.
+
+### 1. Give Superun the context it needs
+
+Superun works best when it understands the API. You can provide:
+* **OpenAPI specification** (if available)
+* **Copy-pasted docs or examples** (especially endpoints and sample requests/responses)
+
+The clearer the documentation, the better Superun can reason about how to call the API.
+
+### 2. Handle authentication safely
+
+For APIs that require authentication:
+
+**Option 1: Use Supabase Edge Functions as a proxy**
+* Store secrets securely on Supabase
+* Let Superun call the API endpoint via the Edge Function (not the API directly)
+
+**Option 2: Implement the API integration directly in your Superun project**
+* Expose an authentication endpoint (e.g. to exchange credentials for a token or session)
+* Let Superun call that auth endpoint as part of the integration flow
+* Include tokens, headers, or session info in subsequent API calls
+
+## Example APIs
+
+Here are some popular APIs that can be integrated with Superun:
+
+<AccordionGroup>
+  <Accordion title="Maps & Location">
+    <ul>
+      <li><strong>Mapbox</strong> - Powers navigation for people, packages, and vehicles everywhere</li>
+      <li><strong>Google Maps</strong> - Maps, routes, and location services</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Content & Media">
+    <ul>
+      <li><strong>YouTube</strong> - Add a variety of YouTube features to your application</li>
+      <li><strong>Pixabay</strong> - Search and retrieve royalty-free images and videos</li>
+      <li><strong>Unsplash</strong> - Beautiful, free photos from talented photographers</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="E-commerce & Business">
+    <ul>
+      <li><strong>Shopify</strong> - Enhance your e-commerce capabilities</li>
+      <li><strong>WooCommerce</strong> - WordPress e-commerce platform</li>
+      <li><strong>Lemon Squeezy</strong> - E-commerce platform that simplifies selling digital products</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Productivity & Collaboration">
+    <ul>
+      <li><strong>Notion</strong> - Note-taking, task management, and database functions</li>
+      <li><strong>Slack</strong> - Automate messages and workflows</li>
+      <li><strong>Google Workspace</strong> - Cloud-based productivity and collaboration tools</li>
+    </ul>
+  </Accordion>
+
+  <Accordion title="Data & News">
+    <ul>
+      <li><strong>Alpha Vantage</strong> - Realtime and historical financial market data</li>
+      <li><strong>News API</strong> - Search news and blog articles from 150K worldwide sources</li>
+      <li><strong>Currents</strong> - Curate and access to real-time global news from variety of sources</li>
+    </ul>
+  </Accordion>
+</AccordionGroup>
+
+## Getting Started
+
+<Steps>
+  <Step title="Choose an Integration">
+    Browse our verified integrations or plan to integrate a custom API
+  </Step>
+  <Step title="Set Up Authentication">
+    Configure API keys and authentication methods securely
+  </Step>
+  <Step title="Test the Integration">
+    Use Superun's built-in testing tools to verify your integration works
+  </Step>
+  <Step title="Deploy and Monitor">
+    Deploy your app and monitor the integration's performance
+  </Step>
+</Steps>
+
+<Card title="Need Help?" icon="help-circle" href="/superun/introduction/faq">
+  Check our FAQ for common integration questions and troubleshooting tips.
+</Card>

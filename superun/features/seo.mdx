@@ -1,0 +1,132 @@
+---
+title: "SEO"
+description: "Search Engine Optimization (SEO) helps your pages rank higher on Google and other search engines, making them more discoverable. "
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+
+Superun bakes thoughtful SEO defaults into every page and component. This guide explains those automatic optimizations and how to further tune your Superun‑generated pages for search engines.
+
+## Automatic SEO Features
+
+Superun ships the following SEO helpers by default on new pages:
+
+* Keep title tags to ~60 characters and include primary keywords
+* Write meta descriptions (~160 characters max) with natural keyword usage
+* Use exactly one H1 per page that reflects the page intent and key terms
+* Structure content with semantic HTML elements
+* Optimize images and add descriptive, keyword‑relevant alt text
+* Add JSON‑LD structured data for products, articles, and FAQs when appropriate
+* Boost performance with image lazy‑loading and deferring non‑critical scripts
+* Use canonical URLs to consolidate duplicate content
+* Apply a mobile‑first responsive layout with a correct viewport
+* Prefer clean, human‑readable, descriptive URLs
+
+## Generating SEO Files
+
+Superun makes it easy to generate essential SEO files (`robots.txt` and `sitemap.xml`) directly from the interface:
+
+1. Click "Launch" in the top navigation bar.
+2. In the left sidebar, select "SEO".
+3. In the SEO File section, click "Generate" to automatically create both `robots.txt` and `sitemap.xml`.
+4. Click "Check" to verify the files are properly generated.
+5. Click "Publish" to deploy your changes with the new SEO files.
+
+These files are essential for search engine indexing and help crawlers discover and index your pages efficiently.
+
+## Built‑in Page Speed Optimization
+
+Superun includes a speed audit powered by Google Lighthouse—an open‑source analyzer for performance, accessibility, SEO, and best practices. To run an audit in Superun:
+
+1. Click "Launch" in the top navigation bar.
+2. In the left sidebar, select "Performance".
+3. Review the SEO scorecard and category‑specific recommendations. Use "Try to fix" to follow the actions that improve load time, rankings, and user experience.
+
+Quick wins include removing unused scripts, compressing and lazy‑loading images, applying code‑splitting for on‑demand loading, using a CDN, and cutting render‑blocking resources on first paint.
+
+
+## Tips and Tricks
+<AccordionGroup>
+    <Accordion title="Sitemap for Search Engine Indexing">
+        A sitemap helps search engines crawl and index your website efficiently. You can generate it automatically using the interface method described in the "Generating SEO Files" section above, or manually:
+        
+        1. Go to **Launch → SEO** and click "Generate" to create `sitemap.xml` automatically.
+        2. After publishing, in Google Search Console → Sitemaps, submit `https://yourdomain/sitemap.xml` (replace `yourdomain` with your custom domain).
+        3. The `sitemap.xml` reference is automatically added to your `robots.txt` when generated via the interface.
+
+        Keep the sitemap fresh (update periodically or automate during builds). To verify quickly: `curl https://yourdomain/sitemap.xml`.
+    </Accordion>
+    <Accordion title="Robots.txt Configuration for Search Control">
+        The `robots.txt` file instructs search engines which paths to crawl or ignore. You can generate it automatically using the interface method described in the "Generating SEO Files" section above, or manually:
+        
+        1. Go to **Launch → SEO** and click "Generate" to create `robots.txt` automatically.
+        2. The generated file will be placed at your site's root with default settings. For example:
+        
+        ```txt
+        User-agent: *
+        Allow: /
+        Sitemap: https://yourdomain/sitemap.xml
+        ```
+        
+        3. If you need to customize rules, you can edit the file directly in your repository to allow or block specific paths as needed.
+        
+        Use `Disallow` sparingly to avoid accidentally hiding important content.
+    </Accordion>
+    <Accordion title="Internal Linking for Better SEO">
+        Internal links help both users and crawlers navigate your site. Superun can help:
+        
+        * Suggest relevant internal links between pages.
+        * Ensure logical site architecture for easy indexing.
+        * Improve page authority with proper linking strategies.
+        
+        How to add internal links in Superun:
+        1. Use prompts like “Suggest internal links for this page.”
+        2. Add links to related content in your project.
+        3. Keep anchor text descriptive and relevant.
+    </Accordion>
+    <Accordion title="Customize Your Shared Image (OG)">
+        When your project is shared on social platforms, customize the preview image in two ways:
+        
+        <b>Let AI handle it</b>
+        
+        Upload an image and use a simple prompt like:
+        
+        ```
+        Can you change the OG image that appears when the site is shared on social media platforms to the one above?
+        ```
+        
+        <b>Manual via repository</b>
+        
+        1. Open your project repository and navigate to the `public` folder.
+        2. Replace the existing `og-image.png` with your new image.
+        3. Rename your new image to `og-image.png` (recommended 1200×630).
+    </Accordion>
+    <Accordion title="More tips">
+        * Keep pages unique
+        * Add meaningful image alt text and compress assets
+        * Target long‑tail keywords
+        * Keep content fresh
+        * Add structured data to highlight FAQs, articles, and products where relevant
+    </Accordion>
+</AccordionGroup>
+
+## FAQ
+<AccordionGroup>
+    <Accordion title="How long does indexing take?">
+        Typically from a few hours to a few days. Submitting `sitemap.xml` helps accelerate discovery.
+    </Accordion>
+    <Accordion title="What if I don’t see rankings?">
+        Verify your sitemap is submitted, then review content quality, internal links, external links, page speed, and mobile experience.
+    </Accordion>
+    <Accordion title="Does Superun support mobile SEO?">
+        Yes. Superun uses mobile‑first responsive layouts and correct viewport settings by default.
+    </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="Superun Website" icon="globe" href="https://superun.ai/web" horizontal>
+  Visit the website to explore more features and examples.
+</Card>
+
+

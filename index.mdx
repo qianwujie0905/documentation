@@ -1,97 +1,201 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Superun"
+description: "AI-powered no-code website builder. Create websites and web apps from prompts, edit with visual editor or code mode, integrate Supabase database, and deploy instantly."
+hideTableOfContents: true
+mode: custom
 ---
 
-## Setting up
+<link rel="stylesheet" href="/style.css" />
 
-Get your documentation site up and running in minutes.
+<div style={{
+  maxWidth: '1200px',
+  margin: '0px auto',
+  padding: '2rem',
+  minHeight: '100vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+}}>
+  <div style={{ textAlign: 'center', marginBottom: '3rem', position: 'relative' }}>
+    <h1 
+      className="whitespace-pre-wrap group font-semibold text-2xl sm:text-3xl mt-8 text-gray-900 dark:text-white"
+      id="superun" 
+      style={{ 
+        fontSize: '3rem', 
+        fontWeight: '700', 
+        marginBottom: '0.5rem',
+        textAlign: 'center',
+        position: 'relative',
+        display: 'inline-block'
+      }}
+    >
+      <a 
+        href="#superun" 
+        className="absolute -left-12 top-1/2 -translate-y-1/2 flex items-center opacity-0 border-0 group-hover:opacity-100 transition-opacity" 
+        aria-label="Navigate to header"
+        style={{ left: '-3rem' }}
+      >
+        <div className="w-6 h-6 rounded-md flex items-center justify-center shadow-sm text-gray-400 dark:text-white/50 dark:bg-background-dark dark:brightness-[1.35] dark:ring-1 dark:hover:brightness-150 bg-white ring-1 ring-gray-400/30 dark:ring-gray-700/25 hover:ring-gray-400/60 dark:hover:ring-white/20">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="gray" height="12px" viewBox="0 0 576 512">
+            <path d="M0 256C0 167.6 71.6 96 160 96h72c13.3 0 24 10.7 24 24s-10.7 24-24 24H160C98.1 144 48 194.1 48 256s50.1 112 112 112h72c13.3 0 24 10.7 24 24s-10.7 24-24 24H160C71.6 416 0 344.4 0 256zm576 0c0 88.4-71.6 160-160 160H344c-13.3 0-24-10.7-24-24s10.7-24 24-24h72c61.9 0 112-50.1 112-112s-50.1-112-112-112H344c-13.3 0-24-10.7-24-24s10.7-24 24-24h72c88.4 0 160 71.6 160 160zM184 232H392c13.3 0 24 10.7 24 24s10.7-24 24-24H184c-13.3 0-24-10.7-24-24s10.7-24 24-24z"></path>
+          </svg>
+        </div>
+      </a>
+      <span className="cursor-pointer">Superun</span>
+    </h1>
+    <p className="text-gray-600 dark:text-gray-400" style={{ 
+      fontSize: '1.25rem', 
+      marginBottom: '2rem' 
+    }}>
+      <span data-as="p">AI-powered no-code website builder. Create websites and web apps from prompts, edit with visual editor or code mode, integrate Supabase database, and deploy instantly.</span>
+    </p>
+  </div>
+  
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '2rem',
+    width: '100%',
+    maxWidth: '920px',
+    marginBottom: '2rem'
+  }}>
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/introduction/welcome"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/wand-magic.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Getting Started</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Learn how to create your first project, understand the core features, and start building with Superun.</span>
+          </div>
+        </div>
+      </div>
+    </a>
+    
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/features/modes"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/sparkles.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Features</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Explore AI-powered features, visual editing, code mode, cloud integration, and more capabilities.</span>
+          </div>
+        </div>
+      </div>
+    </a>
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/integrations/introduction"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/plug.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Integrations</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Connect with Supabase, Resend, AI models, Stripe, and other services to extend your app's capabilities.</span>
+          </div>
+        </div>
+      </div>
+    </a>
 
-## Make it yours
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/tips-tricks/best-practice"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/lightbulb.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Tips & Tricks</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Learn best practices, tips for using images, building from idea to app, and avoiding security pitfalls.</span>
+          </div>
+        </div>
+      </div>
+    </a>
 
-Design a docs site that looks great and empowers your users.
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/use-case/inspiration-time"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/rocket.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Use Cases</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Explore real-world examples including landing pages, prototypes, SaaS applications, and inspiration projects.</span>
+          </div>
+        </div>
+      </div>
+    </a>
 
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+    <a 
+      className="card block font-normal group relative my-2 ring-2 ring-transparent rounded-2xl bg-white dark:bg-background-dark border border-gray-950/10 dark:border-white/10 overflow-hidden w-full cursor-pointer hover:!border-primary dark:hover:!border-primary-light" 
+      href="/superun/changelog"
+    >
+      <div className="px-6 py-5 relative" data-component-part="card-content-container">
+        <div id="card-link-arrow-icon" className="absolute text-gray-400 dark:text-gray-500 group-hover:text-primary dark:group-hover:text-primary-light top-5 right-5 hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4">
+            <path d="M7 7h10v10"></path>
+            <path d="M7 17 17 7"></path>
+          </svg>
+        </div>
+        <div className="h-6 w-6 fill-gray-800 dark:fill-gray-100 text-gray-800 dark:text-gray-100" data-component-part="card-icon">
+          <svg className="h-6 w-6 bg-primary dark:bg-primary-light !m-0 shrink-0" style={{maskImage: "url('https://d3gk2c5xim1je2.cloudfront.net/v6.6.0/regular/clock.svg')", maskRepeat: "no-repeat", maskPosition: "center center"}}></svg>
+        </div>
+        <div>
+          <h2 className="not-prose font-semibold text-base text-gray-800 dark:text-white mt-4" contentEditable="false" data-component-part="card-title">Changelog</h2>
+          <div className="prose mt-1 font-normal text-sm leading-6 text-gray-600 dark:text-gray-400" data-component-part="card-content">
+            <span data-as="p">Stay updated with the latest features, improvements, and changes in Superun releases.</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

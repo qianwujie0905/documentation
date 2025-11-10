@@ -1,0 +1,608 @@
+---
+title: "AI Integration"
+description: "Add AI capabilities to your Superun app using various AI providers and models"
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+## Overview
+
+Superun provides seamless integration with various AI providers, allowing you to add intelligent features to your applications. From text generation and image creation to code assistance and data analysis, AI integration opens up endless possibilities for your Superun apps.
+
+## What is AI Integration
+
+AI integration in Superun allows you to:
+
+- **Text Generation:** Create content, summaries, and responses using language models
+- **Image Generation:** Generate images from text descriptions
+- **Code Assistance:** Get help with coding tasks and debugging
+- **Data Analysis:** Analyze and interpret data using AI
+- **Conversational AI:** Build chatbots and virtual assistants
+- **Content Moderation:** Automatically moderate user-generated content
+
+## Supported AI Providers
+
+### OpenAI
+
+- **GPT Models:** Text generation, completion, and conversation
+- **DALL-E:** Image generation from text descriptions
+- **Whisper:** Speech-to-text transcription
+- **Embeddings:** Text embeddings for similarity and search
+
+### Anthropic
+
+- **Claude:** Advanced language model for complex reasoning
+- **Claude Instant:** Faster, lighter model for quick tasks
+- **Code Generation:** Specialized for coding tasks
+
+
+## Getting Started
+
+### 1. Choose an AI Provider
+
+Select the AI provider that best fits your needs:
+
+- **OpenAI:** Best for general-purpose text generation
+- **Anthropic:** Excellent for complex reasoning and coding
+- **Google AI:** Good for multimodal applications
+- **Replicate:** Great for open-source models
+
+### 2. Get API Keys
+
+For each provider, you'll need to:
+
+1. Create an account
+2. Generate API keys
+3. Configure usage limits and billing
+
+### 3. Configure in Superun
+
+In your Superun project:
+
+1. Go to **Settings → Integrations**
+2. Find your chosen AI provider
+3. Enter your API keys
+4. Configure model preferences
+5. Click **Save**
+
+## Text Generation
+
+### Basic Text Generation
+
+```jsx
+import { openai } from './lib/ai';
+
+const generateText = async (prompt, model = 'gpt-3.5-turbo') => {
+  try {
+    const response = await openai.chat.completions.create({
+      model: model,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+      max_tokens: 1000,
+      temperature: 0.7,
+    });
+
+    return response.choices[0].message.content;
+  } catch (error) {
+    console.error('Error generating text:', error);
+    throw error;
+  }
+};
+```
+
+### Conversation with Context
+
+```jsx
+const generateConversation = async (messages, model = 'gpt-3.5-turbo') => {
+  try {
+    const response = await openai.chat.completions.create({
+      model: model,
+      messages: messages,
+      max_tokens: 1000,
+      temperature: 0.7,
+    });
+
+    return response.choices[0].message.content;
+  } catch (error) {
+    console.error('Error generating conversation:', error);
+    throw error;
+  }
+};
+
+// Usage
+const messages = [
+  { role: 'system', content: 'You are a helpful assistant.' },
+  { role: 'user', content: 'What is the capital of France?' },
+  { role: 'assistant', content: 'The capital of France is Paris.' },
+  { role: 'user', content: 'What is the population of Paris?' },
+];
+
+const response = await generateConversation(messages);
+```
+
+### Content Generation
+
+```jsx
+const generateContent = async (type, topic, length = 'medium') => {
+  const prompts = {
+    blog: `Write a ${length} blog post about ${topic}`,
+    email: `Write a professional email about ${topic}`,
+    summary: `Summarize the following content: ${topic}`,
+    translation: `Translate the following text to English: ${topic}`,
+  };
+
+  const prompt = prompts[type] || prompts.blog;
+  
+  return await generateText(prompt);
+};
+```
+
+## Image Generation
+
+### Generate Images with DALL-E
+
+```jsx
+import { openai } from './lib/ai';
+
+const generateImage = async (prompt, size = '1024x1024', quality = 'standard') => {
+  try {
+    const response = await openai.images.generate({
+      model: 'dall-e-3',
+      prompt: prompt,
+      size: size,
+      quality: quality,
+      n: 1,
+    });
+
+    return response.data[0].url;
+  } catch (error) {
+    console.error('Error generating image:', error);
+    throw error;
+  }
+};
+```
+
+### Image Variations
+
+```jsx
+const createImageVariation = async (imageUrl, size = '1024x1024') => {
+  try {
+    const response = await openai.images.createVariation({
+      image: imageUrl,
+      size: size,
+      n: 1,
+    });
+
+    return response.data[0].url;
+  } catch (error) {
+    console.error('Error creating image variation:', error);
+    throw error;
+  }
+};
+```
+
+### Image Editing
+
+```jsx
+const editImage = async (imageUrl, maskUrl, prompt, size = '1024x1024') => {
+  try {
+    const response = await openai.images.edit({
+      image: imageUrl,
+      mask: maskUrl,
+      prompt: prompt,
+      size: size,
+      n: 1,
+    });
+
+    return response.data[0].url;
+  } catch (error) {
+    console.error('Error editing image:', error);
+    throw error;
+  }
+};
+```
+
+## Code Generation
+
+### Generate Code
+
+```jsx
+const generateCode = async (description, language = 'javascript') => {
+  const prompt = `Write ${language} code for: ${description}`;
+  
+  try {
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4',
+      messages: [
+        {
+          role: 'system',
+          content: `You are an expert ${language} developer. Write clean, well-commented code.`,
+        },
+        {
+          role: 'user',
+          content: prompt,
+        },
+      ],
+      max_tokens: 2000,
+      temperature: 0.3,
+    });
+
+    return response.choices[0].message.content;
+  } catch (error) {
+    console.error('Error generating code:', error);
+    throw error;
+  }
+};
+```
+
+### Code Review
+
+```jsx
+const reviewCode = async (code, language = 'javascript') => {
+  const prompt = `Review this ${language} code and provide feedback on:
+  - Code quality
+  - Potential bugs
+  - Performance improvements
+  - Best practices
+  
+  Code:
+  \`\`\`${language}
+  ${code}
+  \`\`\``;
+
+  return await generateText(prompt, 'gpt-4');
+};
+```
+
+### Debug Code
+
+```jsx
+const debugCode = async (code, error, language = 'javascript') => {
+  const prompt = `Debug this ${language} code. The error is: ${error}
+  
+  Code:
+  \`\`\`${language}
+  ${code}
+  \`\`\`
+  
+  Provide:
+  - Explanation of the error
+  - Fixed code
+  - Prevention tips`;
+
+  return await generateText(prompt, 'gpt-4');
+};
+```
+
+## Data Analysis
+
+### Analyze Data
+
+```jsx
+const analyzeData = async (data, analysisType = 'general') => {
+  const prompts = {
+    general: `Analyze this data and provide insights: ${JSON.stringify(data)}`,
+    trends: `Identify trends in this data: ${JSON.stringify(data)}`,
+    anomalies: `Find anomalies in this data: ${JSON.stringify(data)}`,
+    summary: `Summarize this data: ${JSON.stringify(data)}`,
+  };
+
+  const prompt = prompts[analysisType] || prompts.general;
+  
+  return await generateText(prompt, 'gpt-4');
+};
+```
+
+### Generate Reports
+
+```jsx
+const generateReport = async (data, reportType = 'executive') => {
+  const prompts = {
+    executive: `Create an executive summary report for this data: ${JSON.stringify(data)}`,
+    technical: `Create a technical analysis report for this data: ${JSON.stringify(data)}`,
+    marketing: `Create a marketing insights report for this data: ${JSON.stringify(data)}`,
+  };
+
+  const prompt = prompts[reportType] || prompts.executive;
+  
+  return await generateText(prompt, 'gpt-4');
+};
+```
+
+## Conversational AI
+
+### Chatbot Implementation
+
+```jsx
+import { useState, useEffect } from 'react';
+
+const Chatbot = () => {
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const sendMessage = async (message) => {
+    const newMessages = [...messages, { role: 'user', content: message }];
+    setMessages(newMessages);
+    setLoading(true);
+
+    try {
+      const response = await generateConversation(newMessages);
+      setMessages([...newMessages, { role: 'assistant', content: response }]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (input.trim()) {
+      sendMessage(input);
+      setInput('');
+    }
+  };
+
+  return (
+    <div className="chatbot">
+      <div className="messages">
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.role}`}>
+            {message.content}
+          </div>
+        ))}
+        {loading && <div className="message assistant">Thinking...</div>}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type your message..."
+        />
+        <button type="submit" disabled={loading}>
+          Send
+        </button>
+      </form>
+    </div>
+  );
+};
+```
+
+### Voice Assistant
+
+```jsx
+const VoiceAssistant = () => {
+  const [isListening, setIsListening] = useState(false);
+  const [transcript, setTranscript] = useState('');
+
+  const startListening = () => {
+    const recognition = new window.webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setTranscript(transcript);
+      // Process the transcript with AI
+      processVoiceInput(transcript);
+    };
+    recognition.onend = () => setIsListening(false);
+
+    recognition.start();
+  };
+
+  const processVoiceInput = async (text) => {
+    try {
+      const response = await generateText(`Process this voice input: ${text}`);
+      // Handle the response (e.g., speak it back, execute command)
+      speak(response);
+    } catch (error) {
+      console.error('Error processing voice input:', error);
+    }
+  };
+
+  const speak = (text) => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  return (
+    <div className="voice-assistant">
+      <button
+        onClick={startListening}
+        disabled={isListening}
+        className={isListening ? 'listening' : ''}
+      >
+        {isListening ? 'Listening...' : 'Start Voice Input'}
+      </button>
+      {transcript && <p>You said: {transcript}</p>}
+    </div>
+  );
+};
+```
+
+## Content Moderation
+
+### Text Moderation
+
+```jsx
+const moderateText = async (text) => {
+  const prompt = `Moderate this text for inappropriate content. Return only "SAFE" or "UNSAFE" with a brief reason:
+  
+  Text: "${text}"`;
+
+  try {
+    const response = await generateText(prompt, 'gpt-3.5-turbo');
+    const isSafe = response.includes('SAFE');
+    const reason = response.replace(/^(SAFE|UNSAFE):\s*/, '');
+    
+    return {
+      isSafe,
+      reason,
+      originalText: text,
+    };
+  } catch (error) {
+    console.error('Error moderating text:', error);
+    return { isSafe: false, reason: 'Error during moderation', originalText: text };
+  }
+};
+```
+
+### Image Moderation
+
+```jsx
+const moderateImage = async (imageUrl) => {
+  try {
+    const response = await openai.moderations.create({
+      input: imageUrl,
+    });
+
+    const result = response.results[0];
+    return {
+      isSafe: !result.flagged,
+      categories: result.categories,
+      scores: result.category_scores,
+    };
+  } catch (error) {
+    console.error('Error moderating image:', error);
+    return { isSafe: false, categories: {}, scores: {} };
+  }
+};
+```
+
+## Advanced Features
+
+### Function Calling
+
+```jsx
+const callFunction = async (prompt, functions) => {
+  try {
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'user', content: prompt }],
+      functions: functions,
+      function_call: 'auto',
+    });
+
+    const message = response.choices[0].message;
+    
+    if (message.function_call) {
+      const functionName = message.function_call.name;
+      const functionArgs = JSON.parse(message.function_call.arguments);
+      
+      return {
+        functionName,
+        arguments: functionArgs,
+        content: message.content,
+      };
+    }
+
+    return { content: message.content };
+  } catch (error) {
+    console.error('Error calling function:', error);
+    throw error;
+  }
+};
+```
+
+### Embeddings
+
+```jsx
+const createEmbedding = async (text) => {
+  try {
+    const response = await openai.embeddings.create({
+      model: 'text-embedding-ada-002',
+      input: text,
+    });
+
+    return response.data[0].embedding;
+  } catch (error) {
+    console.error('Error creating embedding:', error);
+    throw error;
+  }
+};
+
+const findSimilarText = async (query, texts) => {
+  const queryEmbedding = await createEmbedding(query);
+  const textEmbeddings = await Promise.all(
+    texts.map(text => createEmbedding(text))
+  );
+
+  // Calculate cosine similarity
+  const similarities = textEmbeddings.map((embedding, index) => ({
+    text: texts[index],
+    similarity: cosineSimilarity(queryEmbedding, embedding),
+  }));
+
+  return similarities.sort((a, b) => b.similarity - a.similarity);
+};
+```
+
+## Best Practices
+
+### Performance Optimization
+
+1. **Cache Responses:** Cache AI responses to avoid repeated API calls
+2. **Batch Requests:** Combine multiple requests when possible
+3. **Use Appropriate Models:** Choose the right model for your use case
+4. **Implement Rate Limiting:** Respect API rate limits
+
+### Cost Management
+
+1. **Monitor Usage:** Track API usage and costs
+2. **Optimize Prompts:** Write efficient prompts to reduce token usage
+3. **Use Caching:** Cache responses to avoid duplicate requests
+4. **Set Limits:** Implement usage limits for users
+
+### Security
+
+1. **Validate Inputs:** Sanitize user inputs before sending to AI
+2. **Handle Errors:** Implement proper error handling
+3. **Protect API Keys:** Never expose API keys in client-side code
+4. **Content Filtering:** Implement content filtering for AI outputs
+
+## Troubleshooting
+
+### Common Issues
+
+**Q: AI responses are inconsistent**
+
+A: Try:
+- Adjusting the temperature parameter
+- Using more specific prompts
+- Providing more context in the conversation
+
+**Q: API rate limits are being exceeded**
+
+A: Implement:
+- Request queuing
+- Exponential backoff
+- User rate limiting
+- Caching
+
+**Q: AI responses are too slow**
+
+A: Optimize by:
+- Using faster models for simple tasks
+- Implementing response caching
+- Reducing prompt length
+- Using streaming for long responses
+
+**Q: Content moderation is too strict/lenient**
+
+A: Adjust by:
+- Fine-tuning the moderation prompts
+- Using different models
+- Implementing custom rules
+- Combining multiple moderation approaches
+
+<Card title="Need Help?" icon="help-circle" href="/superun/introduction/faq">
+  Check our FAQ for common AI integration questions and troubleshooting tips.
+</Card>

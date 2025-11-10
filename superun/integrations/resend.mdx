@@ -1,0 +1,658 @@
+---
+title: "Resend Integration"
+description: "Add email capabilities to your Superun app using Resend's modern email API"
+image: "https://b.ux-cdn.com/uxarts/files/t20250924144227/ipkumj75.png"
+---
+
+## Overview
+
+Resend is a modern email API designed for developers. It provides a simple, reliable way to send transactional and marketing emails from your Superun applications. With Resend, you can send emails with just a few lines of code.
+
+## What is Resend
+
+Resend offers a developer-friendly email service with:
+
+- **Simple API:** Clean, RESTful API that's easy to integrate
+- **High Deliverability:** Optimized for inbox placement
+- **React Email:** Built-in support for React-based email templates
+- **Webhooks:** Real-time delivery and engagement tracking
+- **Analytics:** Detailed email performance metrics
+- **Templates:** Pre-built email templates for common use cases
+
+## Key Benefits
+
+- **Developer Experience:** Designed by developers, for developers
+- **High Deliverability:** Better inbox placement than traditional SMTP
+- **React Integration:** Native support for React email components
+- **Real-time Tracking:** Webhooks for delivery and engagement events
+- **Scalable:** Handles high-volume email sending
+- **Affordable:** Competitive pricing with generous free tier
+
+## Getting Started
+
+### 1. Create a Resend Account
+
+1. Go to [resend.com](https://resend.com) and sign up
+2. Verify your email address
+3. Complete the account setup process
+
+### 2. Get Your API Key
+
+1. Go to **API Keys** in your Resend dashboard
+2. Click **Create API Key**
+3. Give it a name (e.g., "Superun App")
+4. Copy the API key (starts with `re_`)
+5. Keep it secure and never expose it in client-side code
+
+### 3. Configure Resend in Superun
+
+In your Superun project:
+
+1. Go to **Settings → Integrations**
+2. Find **Resend** and click **Connect**
+3. Enter your API Key
+4. Click **Save**
+
+Superun will automatically configure your project to use Resend.
+
+## Basic Email Sending
+
+### Install Resend SDK
+
+Superun automatically includes the Resend SDK, but you can also install it manually:
+
+```bash
+npm install resend
+```
+
+### Send a Simple Email
+
+```jsx
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Send a simple email
+const sendEmail = async (to, subject, text) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: [to],
+      subject: subject,
+      text: text,
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    console.log('Email sent successfully:', data);
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+### Send HTML Email
+
+```jsx
+const sendHtmlEmail = async (to, subject, html) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: [to],
+      subject: subject,
+      html: html,
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+## React Email Integration
+
+### Install React Email
+
+```bash
+npm install @react-email/components
+```
+
+### Create Email Templates
+
+```jsx
+// components/emails/WelcomeEmail.jsx
+import {
+  Html,
+  Head,
+  Body,
+  Container,
+  Section,
+  Text,
+  Button,
+} from '@react-email/components';
+
+export const WelcomeEmail = ({ name, verificationLink }) => {
+  return (
+    <Html>
+      <Head />
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={box}>
+            <Text style={heading}>Welcome to Superun!</Text>
+            <Text style={paragraph}>
+              Hi {name}, welcome to our platform. We're excited to have you on board!
+            </Text>
+            <Text style={paragraph}>
+              Please verify your email address by clicking the button below:
+            </Text>
+            <Button style={button} href={verificationLink}>
+              Verify Email
+            </Button>
+            <Text style={paragraph}>
+              If you didn't create an account, you can safely ignore this email.
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+
+const main = {
+  backgroundColor: '#f6f9fc',
+  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+};
+
+const container = {
+  backgroundColor: '#ffffff',
+  margin: '0 auto',
+  padding: '20px 0 48px',
+  marginBottom: '64px',
+};
+
+const box = {
+  padding: '0 48px',
+};
+
+const heading = {
+  fontSize: '32px',
+  lineHeight: '1.3',
+  fontWeight: '700',
+  color: '#484848',
+  margin: '0 0 20px',
+};
+
+const paragraph = {
+  fontSize: '16px',
+  lineHeight: '1.4',
+  color: '#3c4149',
+  margin: '0 0 16px',
+};
+
+const button = {
+  backgroundColor: '#5F51E8',
+  borderRadius: '3px',
+  color: '#fff',
+  fontSize: '16px',
+  textDecoration: 'none',
+  textAlign: 'center',
+  display: 'block',
+  padding: '12px 20px',
+  margin: '20px 0',
+};
+```
+
+### Send React Email
+
+```jsx
+import { render } from '@react-email/render';
+import { WelcomeEmail } from './components/emails/WelcomeEmail';
+
+const sendWelcomeEmail = async (to, name, verificationLink) => {
+  try {
+    const emailHtml = render(WelcomeEmail({ name, verificationLink }));
+    
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: [to],
+      subject: 'Welcome to Superun!',
+      html: emailHtml,
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+## Email Templates
+
+### Password Reset Email
+
+```jsx
+// components/emails/PasswordResetEmail.jsx
+import {
+  Html,
+  Head,
+  Body,
+  Container,
+  Section,
+  Text,
+  Button,
+} from '@react-email/components';
+
+export const PasswordResetEmail = ({ name, resetLink }) => {
+  return (
+    <Html>
+      <Head />
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={box}>
+            <Text style={heading}>Password Reset Request</Text>
+            <Text style={paragraph}>
+              Hi {name}, we received a request to reset your password.
+            </Text>
+            <Text style={paragraph}>
+              Click the button below to reset your password:
+            </Text>
+            <Button style={button} href={resetLink}>
+              Reset Password
+            </Button>
+            <Text style={paragraph}>
+              This link will expire in 1 hour. If you didn't request this, you can safely ignore this email.
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+```
+
+### Notification Email
+
+```jsx
+// components/emails/NotificationEmail.jsx
+import {
+  Html,
+  Head,
+  Body,
+  Container,
+  Section,
+  Text,
+  Button,
+} from '@react-email/components';
+
+export const NotificationEmail = ({ name, title, message, actionLink, actionText }) => {
+  return (
+    <Html>
+      <Head />
+      <Body style={main}>
+        <Container style={container}>
+          <Section style={box}>
+            <Text style={heading}>{title}</Text>
+            <Text style={paragraph}>
+              Hi {name},
+            </Text>
+            <Text style={paragraph}>
+              {message}
+            </Text>
+            {actionLink && actionText && (
+              <Button style={button} href={actionLink}>
+                {actionText}
+              </Button>
+            )}
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+```
+
+## Advanced Features
+
+### Send to Multiple Recipients
+
+```jsx
+const sendBulkEmail = async (recipients, subject, html) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: recipients, // Array of email addresses
+      subject: subject,
+      html: html,
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+### Send with Attachments
+
+```jsx
+const sendEmailWithAttachment = async (to, subject, html, attachment) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: [to],
+      subject: subject,
+      html: html,
+      attachments: [
+        {
+          filename: attachment.name,
+          content: attachment.content, // Base64 encoded content
+        },
+      ],
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+### Send with Custom Headers
+
+```jsx
+const sendEmailWithHeaders = async (to, subject, html) => {
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: [to],
+      subject: subject,
+      html: html,
+      headers: {
+        'X-Custom-Header': 'Custom Value',
+        'X-Priority': '1', // High priority
+      },
+    });
+
+    if (error) {
+      console.error('Error sending email:', error);
+      return { success: false, error };
+    }
+
+    return { success: true, data };
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return { success: false, error };
+  }
+};
+```
+
+## Webhooks
+
+### Setting Up Webhooks
+
+1. Go to **Webhooks** in your Resend dashboard
+2. Click **Add Webhook**
+3. Enter your webhook URL (e.g., `https://yourapp.com/api/webhooks/resend`)
+4. Select the events you want to listen for
+5. Copy the webhook secret
+
+### Processing Webhooks
+
+```jsx
+// webhook handler
+import crypto from 'crypto';
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).end();
+  }
+
+  const signature = req.headers['resend-signature'];
+  const webhookSecret = process.env.RESEND_WEBHOOK_SECRET;
+
+  // Verify webhook signature
+  const expectedSignature = crypto
+    .createHmac('sha256', webhookSecret)
+    .update(JSON.stringify(req.body))
+    .digest('hex');
+
+  if (signature !== expectedSignature) {
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+
+  const { type, data } = req.body;
+
+  // Handle different webhook events
+  switch (type) {
+    case 'email.sent':
+      console.log('Email sent:', data.email.id);
+      // Update database, log activity, etc.
+      break;
+
+    case 'email.delivered':
+      console.log('Email delivered:', data.email.id);
+      // Update delivery status
+      break;
+
+    case 'email.bounced':
+      console.log('Email bounced:', data.email.id);
+      // Handle bounce, update user status
+      break;
+
+    case 'email.complained':
+      console.log('Email complained:', data.email.id);
+      // Handle complaint, update user preferences
+      break;
+
+    case 'email.opened':
+      console.log('Email opened:', data.email.id);
+      // Track engagement, update analytics
+      break;
+
+    case 'email.clicked':
+      console.log('Email clicked:', data.email.id);
+      // Track click-through, update analytics
+      break;
+
+    default:
+      console.log(`Unhandled webhook event: ${type}`);
+  }
+
+  res.json({ received: true });
+}
+```
+
+## Email Analytics
+
+### Track Email Opens
+
+```jsx
+// Add tracking pixel to email template
+const TrackingPixel = ({ emailId }) => {
+  return (
+    <img
+      src={`https://yourapp.com/api/track-email-open?emailId=${emailId}`}
+      width="1"
+      height="1"
+      style={{ display: 'none' }}
+      alt=""
+    />
+  );
+};
+```
+
+### Track Email Clicks
+
+```jsx
+// Wrap links with tracking
+const TrackedLink = ({ href, emailId, linkId }) => {
+  const trackedHref = `https://yourapp.com/api/track-email-click?emailId=${emailId}&linkId=${linkId}&redirect=${encodeURIComponent(href)}`;
+  
+  return (
+    <a href={trackedHref} style={linkStyle}>
+      {children}
+    </a>
+  );
+};
+```
+
+## Common Use Cases
+
+### User Registration
+
+```jsx
+const sendWelcomeEmail = async (user) => {
+  const verificationLink = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${user.verificationToken}`;
+  
+  return await sendWelcomeEmail(
+    user.email,
+    user.name,
+    verificationLink
+  );
+};
+```
+
+### Password Reset
+
+```jsx
+const sendPasswordResetEmail = async (user, resetToken) => {
+  const resetLink = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${resetToken}`;
+  
+  const emailHtml = render(PasswordResetEmail({ 
+    name: user.name, 
+    resetLink 
+  }));
+  
+  return await sendHtmlEmail(
+    user.email,
+    'Reset Your Password',
+    emailHtml
+  );
+};
+```
+
+### Order Confirmation
+
+```jsx
+const sendOrderConfirmationEmail = async (order) => {
+  const emailHtml = render(OrderConfirmationEmail({ 
+    order,
+    customer: order.customer,
+    items: order.items
+  }));
+  
+  return await sendHtmlEmail(
+    order.customer.email,
+    `Order Confirmation #${order.id}`,
+    emailHtml
+  );
+};
+```
+
+### Newsletter
+
+```jsx
+const sendNewsletter = async (subscribers, content) => {
+  const emailHtml = render(NewsletterEmail({ content }));
+  
+  return await sendBulkEmail(
+    subscribers,
+    'Weekly Newsletter',
+    emailHtml
+  );
+};
+```
+
+## Best Practices
+
+### Email Design
+
+1. **Mobile-First:** Design for mobile devices first
+2. **Consistent Branding:** Use your brand colors and fonts
+3. **Clear CTAs:** Make call-to-action buttons prominent
+4. **Readable Text:** Use sufficient contrast and font sizes
+5. **Test Across Clients:** Test in different email clients
+
+### Performance
+
+1. **Optimize Images:** Compress images and use appropriate formats
+2. **Minimize HTML:** Keep email HTML clean and minimal
+3. **Use Web Fonts Carefully:** Fallback fonts for better compatibility
+4. **Test Loading Speed:** Ensure emails load quickly
+
+### Deliverability
+
+1. **Authenticate Your Domain:** Set up SPF, DKIM, and DMARC
+2. **Maintain Good Reputation:** Avoid spam triggers
+3. **Use Double Opt-in:** Confirm email addresses before sending
+4. **Provide Unsubscribe:** Always include unsubscribe links
+
+## Troubleshooting
+
+### Common Issues
+
+**Q: Emails are not being delivered**
+
+A: Check:
+- API key is correct and active
+- Sender email is verified
+- Domain authentication is set up
+- Email content doesn't trigger spam filters
+
+**Q: Webhooks are not being received**
+
+A: Verify:
+- Webhook URL is accessible from the internet
+- Webhook endpoint returns 200 status
+- Webhook secret is correct
+- Events are properly selected
+
+**Q: React Email templates are not rendering**
+
+A: Ensure:
+- @react-email/components is installed
+- Email template is properly exported
+- render() function is used correctly
+- HTML structure is valid
+
+**Q: Emails are going to spam**
+
+A: Improve deliverability by:
+- Setting up domain authentication
+- Using a verified sender address
+- Avoiding spam trigger words
+- Maintaining good sender reputation
+
+<Card title="Need Help?" icon="help-circle" href="/superun/introduction/faq">
+  Check our FAQ for common Resend integration questions and troubleshooting tips.
+</Card>
