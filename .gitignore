@@ -1,0 +1,8 @@
+.vs/
+.vscode/
+.idea/
+node_modules/
+.mintlify/
+.mintlify-cache/
+.DS_Store
+Thumbs.db
