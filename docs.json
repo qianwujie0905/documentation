@@ -86,6 +86,41 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Prompt.to.design",
+        "groups": [
+          {
+            "group": "Guide",
+            "pages": [
+              "prompt-to-design/guide/welcome",
+              "prompt-to-design/guide/get-started",
+              "prompt-to-design/guide/faq"
+            ]
+          },
+          {
+            "group": "Features",
+            "pages": [
+              "prompt-to-design/features/kick-start",
+              "prompt-to-design/features/style-transfer",
+              "prompt-to-design/features/region-design",
+              "prompt-to-design/features/smart-fill",
+              "prompt-to-design/features/modify-elements"
+            ]
+          },
+          {
+            "group": "Pricing",
+            "pages": [
+              "prompt-to-design/pricing/index"
+            ]
+          },
+          {
+            "group": "Updates",
+            "pages": [
+              "prompt-to-design/changelog"
+            ]
+          }
+        ]
       }
     ],
     "global": {
