@@ -15,11 +15,7 @@ footer,
   display: none !important;
 }
 
-/* 居中标题和描述（全局，但排除黑名单页面） */
-body:not([data-page="blog-index"]) header {
-  text-align: center !important;
-}
-
+/* 居中标题（全局，但排除黑名单页面） */
 body:not([data-page="blog-index"]) header h1,
 body:not([data-page="blog-index"]) #page-title {
   text-align: center !important;
@@ -28,12 +24,11 @@ body:not([data-page="blog-index"]) #page-title {
   margin-right: auto !important;
 }
 
+/* 描述左对齐（默认对齐） */
 body:not([data-page="blog-index"]) header p,
 body:not([data-page="blog-index"]) header div[class*="description"] {
-  text-align: center !important;
-  max-width: 600px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  text-align: left !important;
+  max-width: 100% !important;
 }
 
 /* 黑名单：隐藏标题和描述的页面列表 */
@@ -64,4 +59,12 @@ body[data-page="blog-index"] .pagination {
   text-align: center !important;
   display: inline-block !important;
   margin: 0 auto !important;
+}
+
+/* 隐藏 get-started 页面的标题和描述 */
+body[data-page*="get-started"] header h1,
+body[data-page*="get-started"] #page-title,
+body[data-page*="get-started"] header p,
+body[data-page*="get-started"] header div[class*="description"] {
+  display: none !important;
 }
