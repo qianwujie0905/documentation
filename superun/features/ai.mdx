@@ -49,16 +49,33 @@ Superun AI uses **Gemini 2.5 Flash** as its default model, but you can specify d
 
 | Model | Description | Best For |
 |-------|-------------|----------|
-| [**Gemini 2.5 Pro**](https://deepmind.google/models/gemini/pro/) | Smartest and most complex Gemini. High reasoning, large context, slower and most expensive. | Deep reasoning, advanced coding, research, complex multimodal tasks |
-| [**Gemini 2.5 Flash (default)**](https://deepmind.google/models/gemini/flash/) | Balanced model. Faster and cheaper than Pro but still capable of reasoning. Mid-range cost. | Assistants, analysis, general workflows where speed + intelligence balance matters |
-| [**Gemini 2.5 Flash Lite**](https://deepmind.google/models/gemini/flash-lite/) | Fastest and cheapest Gemini. Handles simple tasks at scale, less reasoning depth. | High-volume, lightweight tasks like classification, summarization, translation |
-| [**GPT-5**](https://openai.com/index/introducing-gpt-5/) | Smartest OpenAI model. Strong reasoning, very accurate, but slowest and most expensive. | Highest-quality reasoning, accuracy-critical apps, complex decision making |
-| [**GPT-5 Mini**](https://platform.openai.com/docs/models/gpt-5-mini) | Balanced GPT-5. Cheaper and faster than GPT-5, less complex but strong general use. | Assistants, mid-complexity reasoning, business workflows |
-| [**GPT-5 Nano**](https://platform.openai.com/docs/models/gpt-5-nano) | Cheapest and fastest GPT-5. Very basic reasoning, best for quick or simple responses. | Summaries, classification, extraction, high-volume simple tasks |
+| [**GPT-5**](https://openai.com/index/introducing-gpt-5/) | Top-tier model for complex decisions, deep analysis, creative work, and vision understanding. Features advanced reasoning capabilities, highest accuracy, and multimodal understanding. Most capable but slowest and most expensive option. | Complex decision making, deep analysis, creative work, vision understanding, accuracy-critical applications, advanced reasoning tasks |
+| [**GPT-5 Mini**](https://platform.openai.com/docs/models/gpt-5-mini) | Best value for daily office work, email replies, and meeting notes. Optimized balance of performance and cost, delivering strong capabilities at a lower price point than GPT-5. | Daily office work, email replies, meeting notes, business workflows, general assistants, cost-effective production use |
+| [**GPT-5 Nano**](https://platform.openai.com/docs/models/gpt-5-nano) | Ultra-fast for high-frequency queries, real-time chat, and quick Q&A. Lightweight model designed for speed and efficiency, making it the cheapest and fastest GPT-5 variant. | High-frequency queries, real-time chat, quick Q&A, summaries, classification, high-volume simple tasks, latency-sensitive applications |
+| [**Gemini 2.5 Pro**](https://deepmind.google/models/gemini/pro/) | Long-context expert for processing entire books and massive documents. Features exceptional reasoning capabilities, extremely large context window, and advanced multimodal understanding. Best for complex tasks but slower and most expensive. | Processing entire books, massive documents, deep reasoning, advanced coding, research, complex multimodal tasks, long-context analysis |
+| [**Gemini 2.5 Flash (default)**](https://deepmind.google/models/gemini/flash/) | Fast responses for daily chat, text translation, and image understanding. Balanced model offering good reasoning, speed, and cost efficiency. Optimized for general-purpose tasks with mid-range pricing. | Daily chat, text translation, image understanding, assistants, analysis, general workflows, balanced performance needs |
+| [**Gemini 2.5 Flash Lite**](https://deepmind.google/models/gemini/flash-lite/) | Fastest and cheapest for simple Q&A and high-frequency usage. Lightweight model optimized for speed and cost, handling simple tasks at scale with reduced reasoning depth. | Simple Q&A, high-frequency usage, high-volume lightweight tasks, classification, summarization, translation, cost-sensitive applications |
+| [**Llama-3.1-8b-Instant**](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/) | Lightning-fast for customer service and high-concurrency real-time chat. Compact 8B parameter model optimized for low latency and high throughput in concurrent scenarios. | Customer service, high-concurrency real-time chat, quick responses, high-throughput applications, low-latency requirements |
+| [**Llama-3.3-70b-Versatile**](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_3/) | Versatile assistant for complex task handling and deep conversations. 70B parameter model with strong reasoning capabilities, well-balanced for diverse applications requiring both intelligence and efficiency. | Complex task handling, deep conversations, multi-step problem solving, versatile applications, balanced reasoning needs |
+| [**GPT-OSS-120b**](https://platform.openai.com/docs/models/gpt-oss-120b) | Deep thinking model for research analysis and precise reasoning. Large-scale open-source model with advanced reasoning capabilities, optimized for complex problem-solving and academic research. | Research analysis, precise reasoning, complex problem solving, academic research, deep analysis, scientific computing |
+| [**GPT-OSS-20b**](https://platform.openai.com/docs/models/gpt-oss-20b) | Balanced choice combining reasoning capability with speed. Medium-scale open-source model offering good reasoning performance with faster response times, suitable for general-purpose applications. | General-purpose tasks, balanced reasoning and speed, versatile applications, everyday use cases, production workloads |
 
 ### Best and most cost-effective choices
 
-* **Best overall intelligence**: GPT-5 and Gemini 2.5 Pro (deep reasoning, but most expensive)
-* **Best balance (speed + cost + smartness)**: GPT-5 Mini and Gemini 2.5 Flash
-* **Most cost-effective for scale**: GPT-5 Nano and Gemini 2.5 Flash Lite (simple, fast, cheapest)
+#### By Intelligence Level
+
+* **Highest intelligence (deep reasoning, most expensive)**: GPT-5, Gemini 2.5 Pro, GPT-OSS-120b
+  * Best for: Complex decision making, research analysis, advanced coding, academic work
+* **High intelligence (strong reasoning, balanced cost)**: GPT-5 Mini, Gemini 2.5 Flash, Llama-3.3-70b-Versatile, GPT-OSS-20b
+  * Best for: General assistants, business workflows, complex task handling, versatile applications
+* **Lightweight (fast, cost-effective)**: GPT-5 Nano, Gemini 2.5 Flash Lite, Llama-3.1-8b-Instant
+  * Best for: High-frequency queries, simple Q&A, high-volume tasks, real-time chat
+
+#### By Use Case
+
+* **Daily office work**: GPT-5 Mini, Gemini 2.5 Flash
+* **High-concurrency real-time chat**: Llama-3.1-8b-Instant, GPT-5 Nano
+* **Research and analysis**: GPT-5, Gemini 2.5 Pro, GPT-OSS-120b
+* **Cost-sensitive high-volume tasks**: GPT-5 Nano, Gemini 2.5 Flash Lite
+* **Balanced production use**: GPT-5 Mini, Gemini 2.5 Flash, GPT-OSS-20b
 
