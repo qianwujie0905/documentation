@@ -88,7 +88,7 @@
         ]
       },
       {
-        "tab": "Prompt to Design",
+        "tab": "Prompt.to.design",
         "groups": [
           {
             "group": "Guide",
@@ -102,10 +102,10 @@
             "group": "Features",
             "pages": [
               "prompt-to-design/features/kick-start",
-              "prompt-to-design/features/modify-elements",
+              "prompt-to-design/features/style-transfer",
               "prompt-to-design/features/region-design",
               "prompt-to-design/features/smart-fill",
-              "prompt-to-design/features/style-transfer"
+              "prompt-to-design/features/modify-elements"
             ]
           },
           {
@@ -115,7 +115,7 @@
             ]
           },
           {
-            "group": "Changelog",
+            "group": "Updates",
             "pages": [
               "prompt-to-design/changelog"
             ]
