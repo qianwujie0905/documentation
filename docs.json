@@ -129,6 +129,7 @@
   },
   "logo": {
     "light": "/logo/superun-light.png",
-    "dark": "/logo/superun-dark.png"
+    "dark": "/logo/superun-dark.png",
+    "href": "https://superun.ai/"
   }
 }
