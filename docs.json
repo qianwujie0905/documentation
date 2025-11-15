@@ -109,6 +109,13 @@
             ]
           },
           {
+            "group": "Use Cases",
+            "pages": [
+              "prompt-to-design/use cases/dashboard",
+              "prompt-to-design/use cases/landing-page"
+            ]
+          },
+          {
             "group": "Pricing",
             "pages": [
               "prompt-to-design/pricing/index"
