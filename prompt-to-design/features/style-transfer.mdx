@@ -1,25 +1,86 @@
 ---
 title: Style Transfer
-description: Generate new pages with unified visual styles based on a selected reference frame.
 ---
 
-Style Transfer enables you to create new pages that match the visual language of your existing designs.  
-By selecting a Figma Frame as a reference, Prompt.to.design learns its color palette, typography, and spacing system, then applies these attributes to new pages automatically.
+Style Transfer lets you **pick any existing Figma frame as a style reference**, and apply its color, typography, and spacing style to a new design instantly.
 
-![Style Transfer](/images/style-transfer.png)
+It keeps your **content**, while updating the **visual style** to match the selected reference.
 
-## Overview
+---
 
-This feature ensures brand and visual consistency across large projects.  
-Whether building additional product pages, dashboards, or mobile layouts, Style Transfer preserves your established design identity.
+## 1. Choose "Style Transfer"
 
-## Key Capabilities
+Click the **Style Transfer** button in the plugin.
 
-- Learns design tokens such as color, typography, and layout  
-- Generates new pages with consistent visual tone  
-- Works across web and mobile frameworks  
-- Reduces repetitive manual styling tasks  
+<img src="/images/style-transfer/button.png" alt="Generated sample" width="520" />
 
-## When to Use Style Transfer
+Select the frame you want to use as your **style reference**, then enter a short description of the new page you want to generate.
 
-Use Style Transfer when expanding a product's interface or maintaining design system consistency. It is especially effective for teams that manage multiple pages within the same visual identity.
+---
+
+## 2. Before - Original Design (Content Source)
+
+This is the original design:  
+a clean, simple resume layout with blue and white tones.
+
+<img src="/images/style-transfer/before.png" alt="Generated sample" width="520" />
+
+This layout will be used as the **content source**.
+
+---
+
+## 3. After - New Layout in the Selected Style
+
+Here is the generated result:  
+the **same resume content**, but redesigned using the strong visual style of the reference frame (red + yellow school theme).
+
+<img src="/images/style-transfer/after.png" alt="Generated sample" width="520" />
+
+The colors, typography, spacing, and overall feel now match the selected reference style - while keeping your original content and layout structure.
+
+---
+
+## What Style Transfer Helps You Do
+
+- Reuse any page's visual style instantly  
+- Keep your content, but refresh the design  
+- Make new pages match brand or project styles  
+- Avoid manual color / font / spacing adjustments  
+
+---
+
+## Summary
+
+Style Transfer is the fastest way to create **consistent, on-brand designs**:
+
+1. Pick a style reference  
+2. Describe what you want  
+3. Generate a new page in seconds  
+
+Perfect for redesigns, refreshing old pages, and keeping visual consistency across multiple projects.
+
+<div style={{
+  marginTop: '2rem',
+  display: 'flex',
+  justifyContent: 'center',
+}}>
+  <a
+    href="https://www.figma.com/community/plugin/1528325292196938261/prompt-to-design-by-superun-ai-10x-faster-with-ai-design-like-a-pro-prototype-instantly"
+    style={{
+      backgroundColor: '#0F172A',
+      color: 'white',
+      padding: '12px 28px',
+      borderRadius: '8px',
+      fontSize: '16px',
+      fontWeight: '600',
+      textDecoration: 'none',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+      transition: 'all 0.2s ease',
+    }}
+    onMouseOver="this.style.backgroundColor='#1E293B'"
+    onMouseOut="this.style.backgroundColor='#0F172A'"
+  >
+    Start Designing with Prompt.to.design
+  </a>
+</div>
+

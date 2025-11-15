@@ -1,25 +1,82 @@
 ---
 title: Region Design
-description: Redesign selected regions of your layout while maintaining full visual consistency.
 ---
 
-Region Design lets you modify a specific area of a Figma frame without disrupting the rest of your design.  
-You can select any region, describe your intended change, and Prompt.to.design regenerates that section while maintaining alignment, proportions, and hierarchy.
+Region Design lets you **change only one part of the page**, while keeping the rest of the layout and style the same.
 
-![Region Design](/images/region-design.png)
+It is perfect for updating the **hero section**, a card, or any content block without rebuilding the whole page.
 
-## Overview
+---
 
-This feature is designed for iterative workflows where designers only need to adjust certain sections.  
-The model understands spatial relationships and preserves harmony between the updated region and the surrounding layout.
+## 1. Select the Region
 
-## Key Capabilities
+In Figma, select the frame or section you want to improve.  
+In this example, we select the **hero section** of a resume page.
 
-- Localized redesign for selected areas  
-- Maintains style coherence with the original layout  
-- Supports both web and mobile frames  
-- Allows controlled iteration without full regeneration  
+---
 
-## When to Use Region Design
+## 2. Open "Region Design"
 
-Use Region Design when improving or experimenting with specific areas of your design, such as headers, hero sections, or call-to-action blocks.
+In the plugin, click the **Region Design** tab.
+
+<img
+  src="/images/region-redesign/button.png"
+  alt="Region Design button and prompt input"
+/>
+
+Write a short prompt describing how you want to change this area, for example:
+
+> "Redesign this hero section to be more visual and modern, but keep the page's overall style."
+
+Then click **Generate**.
+
+---
+
+## 3. Result: Updated Hero, Same Page Style
+
+The plugin keeps:
+
+- The page layout
+- The global style (colors, spacing, typography)
+- Your existing content outside the selected region
+
+It only redesigns the selected section based on your prompt.
+
+<img
+  src="/images/region-redesign/compare.png"
+  alt="Region Design before and after comparison"
+/>
+
+On the left is the **original hero**. On the right is the **new hero**: more visual and modern,  
+but still matching the rest of the page.
+
+---
+
+Region Design helps you quickly try new ideas for one area of the page  
+without breaking the overall design.
+
+
+<div style={{
+  marginTop: '2rem',
+  display: 'flex',
+  justifyContent: 'center',
+}}>
+  <a
+    href="https://www.figma.com/community/plugin/1528325292196938261/prompt-to-design-by-superun-ai-10x-faster-with-ai-design-like-a-pro-prototype-instantly"
+    style={{
+      backgroundColor: '#0F172A',
+      color: 'white',
+      padding: '12px 28px',
+      borderRadius: '8px',
+      fontSize: '16px',
+      fontWeight: '600',
+      textDecoration: 'none',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+      transition: 'all 0.2s ease',
+    }}
+    onMouseOver="this.style.backgroundColor='#1E293B'"
+    onMouseOut="this.style.backgroundColor='#0F172A'"
+  >
+    Start Designing with Prompt.to.design
+  </a>
+</div>
