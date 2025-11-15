@@ -69,32 +69,4 @@ body[data-page*="get-started"] header div[class*="description"] {
   display: none !important;
 }
 
-/* Superun.ai 和 Prompt.to.design 链接显示为绿色 */
-a[href*="superun.ai"],
-a[href*="figma.com/community/plugin/1528325292196938261"] {
-  color: #16A34A !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
 
-a[href*="superun.ai"]:hover,
-a[href*="figma.com/community/plugin/1528325292196938261"]:hover {
-  color: #15803D !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
-
-/* 暗色模式下的绿色链接 */
-.dark a[href*="superun.ai"],
-.dark a[href*="figma.com/community/plugin/1528325292196938261"] {
-  color: #07C983 !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
-
-.dark a[href*="superun.ai"]:hover,
-.dark a[href*="figma.com/community/plugin/1528325292196938261"]:hover {
-  color: #16A34A !important;
-  text-decoration: none !important;
-  border-bottom: none !important;
-}
