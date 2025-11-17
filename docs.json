@@ -111,8 +111,17 @@
           {
             "group": "Use Cases",
             "pages": [
-              "prompt-to-design/use cases/dashboard",
-              "prompt-to-design/use cases/landing-page"
+              "prompt-to-design/use-cases/maintain-style-consistency",
+              "prompt-to-design/use-cases/recreate-design",
+              "prompt-to-design/use-cases/convert-mobile",
+              "prompt-to-design/use-cases/expand-multi",
+              "prompt-to-design/use-cases/meeting-note",
+              "prompt-to-design/use-cases/messy-redesign",
+              "prompt-to-design/use-cases/region-update",
+              "prompt-to-design/use-cases/speed-up",
+              "prompt-to-design/use-cases/update-frame",
+              "prompt-to-design/use-cases/wireframe"
+
             ]
           },
           {
