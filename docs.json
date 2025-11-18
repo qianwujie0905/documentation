@@ -103,7 +103,7 @@
             "pages": [
               "prompt-to-design/features/kick-start",
               "prompt-to-design/features/style-transfer",
-              "prompt-to-design/features/region-design",
+              "prompt-to-design/features/partial-redesign",
               "prompt-to-design/features/smart-fill",
               "prompt-to-design/features/modify-elements"
             ]
