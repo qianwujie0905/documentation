@@ -3,62 +3,103 @@ title: Style Transfer
 description: Learn how to apply design styles from existing Figma frames to new layouts using Style Transfer feature in Prompt.to.design.
 ---
 
-Style Transfer lets you **pick any existing Figma frame as a style reference**, and apply its color, typography, and spacing style to a new design instantly.
+import Image from '@/components/Image';
 
-It keeps your **content**, while updating the **visual style** to match the selected reference.
 
----
+Style Transfer lets you **generate a brand-new page** while **keeping the visual style of an existing Figma frame**.  
+The AI will match the selected frame's colors, typography, spacing, and layout patterns.
 
-## 1. Choose "Style Transfer"
-
-Click the **Style Transfer** button in the plugin.
-
-<img src="/images/style-transfer/button.png" alt="Generated sample" width="520" />
-
-Select the frame you want to use as your **style reference**, then enter a short description of the new page you want to generate.
+Use **Style Transfer** when you want your new pages to instantly match the design system already in your file.
 
 ---
 
-## 2. Before - Original Design (Content Source)
+## 1. Select the **Style Transfer** tab
 
-This is the original design:  
-a clean, simple resume layout with blue and white tones.
+Open the **prompt.to.design** plugin, then click the **Style Transfer** tab at the top.  
+This mode allows you to choose an existing frame as the visual reference.
 
-<img src="/images/style-transfer/before.png" alt="Generated sample" width="520" />
-
-This layout will be used as the **content source**.
-
----
-
-## 3. After - New Layout in the Selected Style
-
-Here is the generated result:  
-the **same resume content**, but redesigned using the strong visual style of the reference frame (red + yellow school theme).
-
-<img src="/images/style-transfer/after.png" alt="Generated sample" width="520" />
-
-The colors, typography, spacing, and overall feel now match the selected reference style - while keeping your original content and layout structure.
+<img
+  src="/images/style-transfer/1.png"
+  alt="Open the plugin and select the Style Transfer tab"
+  width={700}
+/>
 
 ---
 
-## What Style Transfer Helps You Do
+## 2. Select a frame to use as your style reference
 
-- Reuse any page's visual style instantly  
-- Keep your content, but refresh the design  
-- Make new pages match brand or project styles  
-- Avoid manual color / font / spacing adjustments  
+On your Figma canvas, click any existing frame that has the style you want to reuse.  
+This frame will become your **style reference**, and its colors, typography, spacing, and component patterns will guide the generation.
+
+<img
+  src="/images/style-transfer/2_A.png"
+  alt="Click a frame to set as style reference"
+  width={600}
+/>
+
+<img
+  src="/images/style-transfer/2_referenceframe.png"
+  alt="Selected frame used as style reference"
+  width={300}
+/>
+
+---
+
+## 3. Describe the new page you want to generate
+
+Type a **short description** of the new page layout you want.  
+The AI will generate the page structure using the selected frame's style.
+
+Example prompt:
+> "Generate a hotel review details page, including comments with images and ratings."
+
+<img
+  src="/images/style-transfer/3.png"
+  alt="Enter prompt for the new page while keeping the selected style"
+  width={350}
+/>
+
+
+---
+
+## 4. Click **Generate** and review the preview
+
+Click **Generate** to start styling the new page.  
+When the preview appears, you can scroll or zoom to inspect the AI-generated layout.
+
+<img
+  src="/images/style-transfer/5.png"
+  alt="Review the generated page preview"
+  width={700}
+/>
+
+---
+
+## 5. Insert the styled layout into Figma
+
+Click **Insert to Figma** to place the generated page into your canvas.  
+A new frame will appear, styled consistently with your selected reference frame and fully editable.
+
+<img
+  src="/images/style-transfer/6.png"
+  alt="Insert styled layout into Figma as a new editable frame"
+  width={700}
+/>
 
 ---
 
 ## Summary
 
-Style Transfer is the fastest way to create **consistent, on-brand designs**:
+With Style Transfer, you can:
 
-1. Pick a style reference  
-2. Describe what you want  
-3. Generate a new page in seconds  
+- Reuse an existing page's visual style instantly  
+- Keep colors, fonts, spacing, and UI elements consistent  
+- Generate new pages that match your design system  
+- Save time manually adjusting visual details  
 
-Perfect for redesigns, refreshing old pages, and keeping visual consistency across multiple projects.
+Style Transfer is perfect for building multiple pages in the same product or when reusing a strong visual style across different content types.
+
+
 
 <div style={{
   marginTop: '2rem',
