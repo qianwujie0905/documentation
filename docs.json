@@ -2,6 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Documentation",
+  "description": "Superun and Prompt.to.design Documentation: Complete guides for AI-powered app building, visual editing, Figma plugin, and integrations.",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -9,8 +10,54 @@
   },
   "favicon": "public/favicon.svg",
   "head": [
-    "<link rel=\"stylesheet\" href=\"/style.css\" />"
+    "<link rel=\"stylesheet\" href=\"/style.css\" />",
+    "<link rel=\"apple-touch-icon\" href=\"/favicon.svg\" />",
+    "<link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />"
   ],
+  "seo": {
+    "metatags": {
+      "charset": "UTF-8",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "description": "Superun and Prompt.to.design Documentation: Official guides for AI-powered app building platform. Learn how to build apps with natural language, visual editing, code mode, Supabase integration, and Figma plugin.",
+      "keywords": "Superun, Prompt.to.design, AI app builder, documentation, Supabase integration, Stripe payment, Resend email, visual editor, Figma plugin, web development, no-code, low-code, AI development platform, website builder, app builder, docs.superun.ai, Superun documentation, Prompt.to.design documentation",
+      "author": "Superun Team",
+      "robots": "index, follow, max-image-preview:large",
+      "googlebot": "index, follow",
+      "bingbot": "index, follow",
+      "theme-color": "#16A34A",
+      "color-scheme": "light dark",
+      "canonical": "https://docs.superun.ai",
+      "og:title": "Superun & Prompt.to.design Documentation",
+      "og:type": "website",
+      "og:url": "https://docs.superun.ai",
+      "og:image": "https://b.ux-cdn.com/uxarts/files/t20251118164706/akbopu2e.png",
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": "Superun Documentation - AI-Powered App Builder",
+      "og:description": "Official documentation for Superun and Prompt.to.design. Complete guides for AI-powered app building, visual editing, integrations, and best practices.",
+      "og:site_name": "Superun Documentation",
+      "og:locale": "en_US",
+      "og:locale:alternate": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@superun",
+      "twitter:creator": "@superun",
+      "twitter:title": "Superun & Prompt.to.design Documentation",
+      "twitter:description": "Official guides for Superun AI-powered app builder and Prompt.to.design Figma plugin. Learn features, integrations, and best practices.",
+      "twitter:image": "https://b.ux-cdn.com/uxarts/files/t20251118164706/akbopu2e.png",
+      "twitter:image:alt": "Superun Documentation Platform",
+      "application-name": "Superun Docs",
+      "msapplication-TileColor": "#16A34A",
+      "msapplication-config": "/browserconfig.xml"
+    }
+  },
+  "navbar": {
+    "links": [],
+    "primary": {
+      "type": "button",
+      "label": "Visit Superun",
+      "href": "https://superun.ai/"
+    }
+  },
   "navigation": {
     "tabs": [
       {
