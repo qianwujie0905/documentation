@@ -109,6 +109,27 @@
             ]
           },
           {
+            "group": "Templates",
+            "pages": [
+              "prompt-to-design/templates/index",
+              "prompt-to-design/templates/homepage",
+              "prompt-to-design/templates/dashboard",
+              "prompt-to-design/templates/signup",
+              "prompt-to-design/templates/pricing",
+              "prompt-to-design/templates/workspace",
+              "prompt-to-design/templates/chatbot",
+              "prompt-to-design/templates/support",
+              "prompt-to-design/templates/tutorial",
+              "prompt-to-design/templates/editor",
+              "prompt-to-design/templates/account",
+              "prompt-to-design/templates/order",
+              "prompt-to-design/templates/chart",
+              "prompt-to-design/templates/setting",
+              "prompt-to-design/templates/code",
+              "prompt-to-design/templates/follow"
+            ]
+          },
+          {
             "group": "Use Cases",
             "pages": [
               "prompt-to-design/use-cases/maintain-style-consistency",
@@ -121,7 +142,6 @@
               "prompt-to-design/use-cases/speed-up",
               "prompt-to-design/use-cases/update-frame",
               "prompt-to-design/use-cases/wireframe"
-
             ]
           },
           {
